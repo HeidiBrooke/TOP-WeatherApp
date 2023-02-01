@@ -14,8 +14,16 @@ async function getWeather() {
     console.log(processedData); 
     const feelsLike = processedData.main.feels_like;
     const wind = processedData.wind.speed;
+    const main = processedData.weather[0].main;
+    const description = processedData.weather[0].description;
     const display = document.getElementById('display');
-    display.textContent = `The temperature is ${toFarenheit(feelsLike)} in ${processedData.name}`;
+    if(units.textContent === 'Celsius'){
+        display.textContent = `It's ${toCelsius(feelsLike)} degrees Celsius and ${main} with ${description} in ${processedData.name}.`;
+    }
+    else{
+        display.textContent = `It's ${toFarenheit(feelsLike)} degrees Farenheit and ${main} with ${description}  in ${processedData.name}.`;
+    }
+    
     console.log(wind);
     console.log(toCelsius(feelsLike));
     console.log(toFarenheit(feelsLike));
@@ -32,5 +40,21 @@ function toCelsius(K) {
     return (K-273.15).toFixed(2);
 }
 
+const units = document.getElementById('units');
+
+function toggleUnits(e) {
+    console.log(`I'm clicked!`)
+    console.log(e.target.checked);
+    if(e.target.checked === true){
+        units.textContent = 'Farenheit';
+    }
+    else{
+        units.textContent = 'Celsius';
+    }
+}
+
 const button = document.getElementById('button');
 button.addEventListener('click', getWeather);
+
+const slider = document.getElementById('checkbox');
+slider.addEventListener('click', toggleUnits);
