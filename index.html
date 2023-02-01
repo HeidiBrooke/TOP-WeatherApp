@@ -9,9 +9,20 @@
     <script src="script.js" defer></script>
 </head>
 <body>
-    <div class='content' id="content">
+    <div class="container" id="container">
+        <div class="title">Weather Finder</div>
+        <form action="">
+            <div class="formFields">
+                <input id="city" type="text" placeholder="city">
+                <input id="state" type="text" placeholder="state (2 letter code)">
+                <input id="country" type="text" placeholder="country (2 letter code)">
+            </div>
+                <div class="button grow" id="button">Show me the weather!</div>
+        </form>
         
     </div>
-    
+    <div class="container">
+        <div class="display" id="display">The Weather</div>
+    </div>
 </body>
 </html>
